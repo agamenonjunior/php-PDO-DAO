@@ -42,7 +42,7 @@ class Sql extends PDO{
 
     public function Select($MyQuery,$Parametros = array()):array
     {
-        # code...
+        # Realiza a Consulta SQL
         $stmt = $this->ExecQuery($MyQuery,$Parametros);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
         

@@ -2,9 +2,9 @@
 #Realizando o autoload com  SPL
 spl_autoload_register(function($class_name){
 
-    $arquivo = $class_name.".php";
+    $arquivo = "class".DIRECTORY_SEPARATOR.$class_name.".php";
     if (file_exists($arquivo)) {
-        # code...
+        # Inclui o arquivo.
         require_once($arquivo);
     }
 });
