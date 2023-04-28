@@ -16,5 +16,10 @@ $usuario = new Usuario();
 $resUser = $usuario->LoadbyID(1);
 echo json_encode($resUser);
 
+echo "<h2>Ultimos Usuários:</h2></br>";
+
+$ultimos = $usuario::SelectAll();
+echo json_encode($ultimos);
+
 
 ?>

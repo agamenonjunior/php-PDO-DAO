@@ -127,6 +127,16 @@ class Usuario{
         return $resultado;
 
     }
+
+    public static function SelectAll()
+    {
+        # code...
+        $sql = new Sql();
+        $resultado = $sql->Select("SELECT * FROM usuarios ORDER BY cadastro DESC");
+        return $resultado;
+    }
+
+
     public function __toString()
     {
         #Retornando em json encode
