@@ -136,6 +136,15 @@ class Usuario{
         return $resultado;
     }
 
+    public static function SearchUser($login)
+    {
+        # code...
+        $sql =  new Sql();
+        return $sql->Select("SELECT * FROM usuarios WHERE login like :search ORDER BY cadastro DESC",array(
+            ":search"=>"%{$login}%"
+        ));
+    }
+
 
     public function __toString()
     {

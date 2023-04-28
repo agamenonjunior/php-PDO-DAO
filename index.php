@@ -21,5 +21,8 @@ echo "<h2>Ultimos Usuários:</h2></br>";
 $ultimos = $usuario::SelectAll();
 echo json_encode($ultimos);
 
+$login = $usuario::SearchUser("a");
+echo json_encode($login);
+
 
 ?>
