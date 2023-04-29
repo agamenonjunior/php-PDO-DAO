@@ -24,5 +24,13 @@ echo json_encode($ultimos);
 $login = $usuario::SearchUser("a");
 echo json_encode($login);
 
+echo "</br> <h2>Autentication :</h2></br>";
+$autentication = $usuario->Autentication("agamenon","11234567890");
+echo json_encode($autentication);
+
+echo "</br> <h2>Insert :</h2></br>";
+$Insert = $usuario->Insert("agora","foi o ultimo");
+echo json_encode($Insert);
+
 
 ?>

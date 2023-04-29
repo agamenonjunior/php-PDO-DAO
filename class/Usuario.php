@@ -145,6 +145,57 @@ class Usuario{
         ));
     }
 
+    public function Autentication($login,$senha)
+    {
+        # code...
+        $sql = new Sql();
+        $resultado = $sql->Select("SELECT * FROM usuarios WHERE login =:login AND senha=:senha",array(
+            ":login"=>$login,
+            ":senha"=>$senha
+        ));
+        if (count($resultado) > 0) {
+            # code...
+            $linha = $resultado[0];
+            $this->setId($linha['id']);
+            $this->setLogin($linha['login']);
+            $this->setSenha($linha['senha']);
+            $this->setCadastro($linha['cadastro']);
+            $this->setNivel($linha['nivel']);
+
+        }else{
+           $erro = "Error Login/Senha errados";
+           return $erro;
+            
+        }
+        return $resultado;
+
+    }
+
+    public function LastUser()
+    {
+        # code...
+        $sql = new Sql();
+        $resultado = $sql->Select("SELECT * FROM usuarios ORDER BY id DESC limit 1");
+        return $resultado;
+    }
+
+    public function Insert($login,$senha)
+    {
+        # code...
+        $sql = new Sql();
+        $resultado = $sql->ExecQuery("INSERT INTO usuarios(login,senha) VALUES(:login,:senha)",array(
+            ":login"=>$login,
+            ":senha"=>$senha
+        ));
+        if ($resultado) {
+            # code...
+            $usuario = new Usuario();
+            return $usuario->LastUser();
+        }else{
+            return "Insert Falha";
+        }
+    }
+
 
     public function __toString()
     {
