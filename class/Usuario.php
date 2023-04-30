@@ -196,6 +196,53 @@ class Usuario{
         }
     }
 
+    public function Update($login,$senha)
+    {
+        # code...
+        $this->setLogin($login);
+        $this->setSenha($senha);
+
+        $sql = new Sql();
+        $resultado = $sql->ExecQuery("UPDATE usuarios SET login =:login, senha=:senha WHERE id=:id",array(
+            ":id"=>$this->getId(),
+            ":login"=>$this->getLogin(),
+            ":senha"=>$this->getSenha(),
+        ));
+
+        if ($resultado) {
+            # code...
+            $usuario = new Usuario();
+            return $usuario->LoadbyID($this->getId());
+        }else{
+            return "Falha na atualização";
+        }        
+
+    }
+
+    public function Delete()
+    {
+        # code...
+        $sql = new Sql();
+        $resultado = $sql->ExecQuery("DELETE FROM usuarios WHERE id=:id",array(
+            ":id"=>$this->getId()
+        ));
+
+        if ($resultado) {
+            # code...
+            $this->setId("");
+            $this->setLogin("");
+            $this->setSenha("");
+            $this->setCadastro("");
+            $this->setNivel("");
+            return "Deletado com sucesso";
+        }else{
+            return "Ops...Aconteceu algum error";
+        }
+        
+         
+
+    }
+
 
     public function __toString()
     {
@@ -211,5 +258,3 @@ class Usuario{
     }
 
 }
-
-?>

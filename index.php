@@ -29,8 +29,20 @@ $autentication = $usuario->Autentication("agamenon","11234567890");
 echo json_encode($autentication);
 
 echo "</br> <h2>Insert :</h2></br>";
-$Insert = $usuario->Insert("agora","foi o ultimo");
+$Insert = $usuario->Insert("Novo-Usuário","123*%");
 echo json_encode($Insert);
+
+echo "</br> <h2>Update :</h2></br>";
+$atualizar = new Usuario();
+$atualizar->LoadbyID(2);
+$utualizado = $atualizar->Update("testando-update","4567890");
+echo json_encode($utualizado); 
+
+echo "</br> <h2>Delete :</h2></br>";
+$Delete = new Usuario();
+$Delete->LoadbyID(7);
+$Deletando = $Delete->Delete();
+echo json_encode($Deletando); 
 
 
 ?>
